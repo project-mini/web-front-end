@@ -1,37 +1,37 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 import 'bulma/css/bulma.css'
 
-export default class Header extends Component {
-	render() {
-		return (
-			<nav
-				className="navbar is-info"
-				role="navigation"
-				aria-label="main navigation"
-			>
-				<div className="container">
-					<div className="navbar-brand">
-						<Link className="navbar-item" to="/">
-							ALTERFOSS
+const Header = () => {
+	return (
+		<nav
+			className="navbar is-info"
+			role="navigation"
+			aria-label="main navigation"
+		>
+			<div className="container">
+				<div className="navbar-brand">
+					<Link className="navbar-item" to="/">
+						ALTERFOSS
+					</Link>
+				</div>
+				<div className="navbar-menu">
+					<div className="navbar-end">
+						<Link className="navbar-item" to="/alternative">
+							Alternatives
+						</Link>
+						<Link className="navbar-item" to="/top">
+							Top Alternatives
+						</Link>
+						<Link className="navbar-item" to="/license">
+							License Check
 						</Link>
 					</div>
-					<div className="navbar-menu">
-						<div className="navbar-end">
-							<Link className="navbar-item" to="/alternative">
-								Alternatives
-							</Link>
-							<Link className="navbar-item" to="/top">
-								Top Alternatives
-							</Link>
-							<Link className="navbar-item" to="/license">
-								License Check
-							</Link>
-						</div>
-					</div>
 				</div>
-			</nav>
-		)
-	}
+			</div>
+		</nav>
+	)
 }
+
+export default Header
