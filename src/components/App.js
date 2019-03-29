@@ -1,22 +1,22 @@
-import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Header from './layouts/Header'
-import Footer from './layouts/Footer'
-import Home from './routes/Home'
-import Alternative from './routes/Alternative'
-import Top from './routes/Top'
-import LicenseCheck from './routes/LicenseCheck'
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Header from "./layouts/Header";
+import Footer from "./layouts/Footer";
+import Home from "./routes/Home";
+import Alternative from "./routes/Alternative";
+import Top from "./routes/Top";
+import LicenseCheck from "./routes/LicenseCheck";
 
-import 'bulma/css/bulma.css'
+import "bulma/css/bulma.css";
 
 const App = () => {
 	return (
 		<Router>
 			<div
 				style={{
-					display: 'flex',
-					minHeight: '100vh',
-					flexDirection: 'column',
+					display: "flex",
+					minHeight: "100vh",
+					flexDirection: "column"
 				}}
 			>
 				<div style={{ flex: 1 }}>
@@ -29,7 +29,7 @@ const App = () => {
 				<Footer />
 			</div>
 		</Router>
-	)
-}
+	);
+};
 
-export default App
+export default App;

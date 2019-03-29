@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
-import 'bulma/css/bulma.css'
+import "bulma/css/bulma.css";
 
 const Header = () => {
 	return (
@@ -31,7 +31,7 @@ const Header = () => {
 				</div>
 			</div>
 		</nav>
-	)
-}
+	);
+};
 
-export default Header
+export default Header;

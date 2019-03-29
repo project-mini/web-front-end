@@ -1,7 +1,7 @@
-import React from 'react'
-import Fade from 'react-reveal/Fade'
+import React from "react";
+import Fade from "react-reveal/Fade";
 
-import un from '../../static/images/un.png'
+import un from "../../static/images/un.png";
 
 const Home = props => {
 	return (
@@ -36,13 +36,13 @@ const Home = props => {
 							</div>
 							<Fade right cascade>
 								<div className="column is-half">
-									<figure class="image is-medium">
+									<figure className="image is-medium">
 										<img src={un} alt="Illustration" />
 									</figure>
-									<figure class="image is-medium">
+									<figure className="image is-medium">
 										<img src={un} alt="Illustration" />
 									</figure>
-									<figure class="image is-medium">
+									<figure className="image is-medium">
 										<img src={un} alt="Illustration" />
 									</figure>
 								</div>
@@ -52,7 +52,7 @@ const Home = props => {
 				</div>
 			</section>
 		</div>
-	)
-}
+	);
+};
 
-export default Home
+export default Home;

@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-import 'bulma/css/bulma.css'
+import "bulma/css/bulma.css";
 
 const Top = () => {
-	const x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+	const x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 	return (
 		<div className="container">
@@ -32,12 +32,12 @@ const Top = () => {
 								<td>GPLv3</td>
 								<td>Cloud</td>
 							</tr>
-						)
+						);
 					})}
 				</tbody>
 			</table>
 		</div>
-	)
-}
+	);
+};
 
-export default Top
+export default Top;
