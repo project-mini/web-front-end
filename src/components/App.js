@@ -6,6 +6,7 @@ import Home from "./routes/Home";
 import Alternative from "./routes/Alternative";
 import Top from "./routes/Top";
 import LicenseCheck from "./routes/LicenseCheck";
+import Login from "./routes/Login";
 
 import "bulma/css/bulma.css";
 
@@ -25,6 +26,7 @@ const App = () => {
 					<Route path="/alternative" component={Alternative} />
 					<Route path="/top" component={Top} />
 					<Route path="/license" component={LicenseCheck} />
+					<Route path="/login" component={Login} />
 				</div>
 				<Footer />
 			</div>

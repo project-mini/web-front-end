@@ -1,43 +1,61 @@
 import React from "react";
+import axios from "axios";
 
 import "bulma/css/bulma.css";
 
-const Top = () => {
-	const x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+class Top extends React.Component {
+	state = {
+		soft: []
+	};
 
-	return (
-		<div className="container">
-			<br />
-			<table className="table is-striped is-hoverable is-fullwidth">
-				<thead>
-					<tr>
-						<th>Position</th>
-						<th>Software Name</th>
-						<th>Likes</th>
-						<th>License</th>
-						<th>Type</th>
-					</tr>
-				</thead>
-				<tbody>
-					{x.map((val, index) => {
-						return (
-							<tr key={index}>
-								<th>{val}</th>
-								<td>
-									<a href="https://fsf.org" title="FSF">
-										Docker
-									</a>
-								</td>
-								<td>3000</td>
-								<td>GPLv3</td>
-								<td>Cloud</td>
-							</tr>
-						);
-					})}
-				</tbody>
-			</table>
-		</div>
-	);
-};
+	componentDidMount() {
+		axios
+			.get(
+				`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/alternatives/`
+			)
+			.then(res => {
+				this.setState({ soft: res.data });
+				console.log(this.state.soft);
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}
+
+	render() {
+		let i = 1;
+		return (
+			<div className="container">
+				<br />
+				<table className="table is-striped is-hoverable is-fullwidth">
+					<thead>
+						<tr>
+							<th>Rank</th>
+							<th>Software Name</th>
+							<th>Up Votes</th>
+							<th>License</th>
+						</tr>
+					</thead>
+					<tbody>
+						{this.state.soft.map(software => {
+							return (
+								<tr key={i}>
+									<th>{i++}</th>
+									<td>
+										<a href="https://fsf.org" title="FSF">
+											{software.name}
+										</a>
+									</td>
+									<td>{software.upVotes}</td>
+									<td>{software.license}</td>
+								</tr>
+							);
+						})}
+					</tbody>
+				</table>
+			</div>
+		);
+	}
+}
 
 export default Top;

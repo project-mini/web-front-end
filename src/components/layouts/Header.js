@@ -27,6 +27,7 @@ const Header = () => {
 						<Link className="navbar-item" to="/license">
 							License Check
 						</Link>
+						<a href="https://dry-dusk-50998.herokuapp.com/api/login">Login</a>
 					</div>
 				</div>
 			</div>

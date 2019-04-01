@@ -6,12 +6,10 @@ import CustomCard from "../layouts/CustomCard";
 import "bulma/css/bulma.css";
 
 class Alternative extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			soft: []
-		};
-	}
+	
+	state = {
+		soft: []
+	};
 
 	componentDidMount() {
 		axios
