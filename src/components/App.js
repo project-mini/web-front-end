@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import Home from "./routes/Home";
@@ -7,6 +8,8 @@ import Alternative from "./routes/Alternative";
 import Top from "./routes/Top";
 import LicenseCheck from "./routes/LicenseCheck";
 import Login from "./routes/Login";
+import Register from "./routes/Register";
+import Proprietary from "./routes/Proprietary";
 
 import "bulma/css/bulma.css";
 
@@ -27,6 +30,8 @@ const App = () => {
 					<Route path="/top" component={Top} />
 					<Route path="/license" component={LicenseCheck} />
 					<Route path="/login" component={Login} />
+					<Route path="/register" component={Register} />
+					<Route path="/proprietary" component={Proprietary} />
 				</div>
 				<Footer />
 			</div>

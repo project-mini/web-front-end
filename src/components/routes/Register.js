@@ -1,14 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import "bulma/css/bulma.css";
 
-class Login extends React.Component {
+class Register extends React.Component {
 	state = {
+		firstName: "",
+		lastName: "",
 		email: "",
-		password: "",
-		success: false
+		password: ""
 	};
 
 	componentWillMount() {
@@ -28,37 +29,70 @@ class Login extends React.Component {
 		e.preventDefault();
 
 		const user = {
+			firstName: this.state.firstName,
+			lastName: this.state.lastName,
 			email: this.state.email,
-			password: this.state.password
+			password: this.state.password,
+			status: "",
+			success: false
 		};
 
 		axios
 			.post(
-				`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/login/`,
+				`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/signup/`,
 				user
 			)
 			.then(response => {
-				localStorage.setItem("jwtToken", response.data.token);
-				this.props.history.push("/");
+				this.setState({ success: true });
 			})
 			.catch(error => {
-				console.log(error);
 				if (error.response.status === 400) {
-					window.location.reload();
+					this.setState({ status: error.response.status });
 				}
 			});
 	};
 
 	render() {
+		const { status, success } = this.state;
+		if (status === 400 || success) {
+			return <Redirect to="/login" push={true} />;
+		}
 		return (
 			<section className="hero is-fullheight">
 				<div className="hero-body">
 					<div className="container has-text-centered">
 						<div className="column is-4 is-offset-4">
-							<h3 className="title has-text-grey">Login</h3>
-							<p className="subtitle has-text-grey">Please login to proceed.</p>
+							<h3 className="title has-text-grey">Register</h3>
+							<p className="subtitle has-text-grey">
+								Enter given details to register.
+							</p>
 							<div className="box">
 								<form onSubmit={this.onSubmit}>
+									<div className="field">
+										<div className="control">
+											<input
+												className="input is-large"
+												type="text"
+												placeholder="First Name"
+												name="firstName"
+												value={this.state.firstName}
+												onChange={this.onChange}
+												autoFocus=""
+											/>
+										</div>
+									</div>
+									<div className="field">
+										<div className="control">
+											<input
+												className="input is-large"
+												type="text"
+												placeholder="Last Name"
+												name="lastName"
+												value={this.state.lastName}
+												onChange={this.onChange}
+											/>
+										</div>
+									</div>
 									<div className="field">
 										<div className="control">
 											<input
@@ -68,11 +102,9 @@ class Login extends React.Component {
 												name="email"
 												value={this.state.email}
 												onChange={this.onChange}
-												autoFocus=""
 											/>
 										</div>
 									</div>
-
 									<div className="field">
 										<div className="control">
 											<input
@@ -85,16 +117,15 @@ class Login extends React.Component {
 											/>
 										</div>
 									</div>
-									<button
-										type="submit"
-										className="button is-block is-info is-large is-fullwidth"
-									>
-										Login
+
+									<button className="button is-block is-info is-large is-fullwidth">
+										Register
 									</button>
 								</form>
 							</div>
 							<p className="has-text-grey">
-								<Link to="/register">Or Sign Up Here!</Link> &nbsp;·&nbsp;
+								Already have an account? <Link to="/login">Log In Here!</Link>{" "}
+								&nbsp;·&nbsp;
 							</p>
 						</div>
 					</div>
@@ -104,4 +135,4 @@ class Login extends React.Component {
 	}
 }
 
-export default Login;
+export default Register;

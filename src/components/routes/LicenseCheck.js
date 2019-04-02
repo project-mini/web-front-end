@@ -46,15 +46,19 @@ class LicenseCheck extends React.Component {
 								<th>License</th>
 							</tr>
 						</thead>
-						{this.state.software.map(software => {
-							return (
-								<tr key={software._id}>
-									<th>{i++}</th>
-									<td>{software.name}</td>
-									<td>{software.license}</td>
-								</tr>
-							);
-						})}
+						<tbody>
+							{this.state.software.map(software => {
+								return (
+									<tr key={software._id}>
+										<th>{i++}</th>
+										<td>{software.name}</td>
+										<td>
+											<a href={software.licenseLink}>{software.license}</a>
+										</td>
+									</tr>
+								);
+							})}
+						</tbody>
 					</table>
 				</div>
 			);
