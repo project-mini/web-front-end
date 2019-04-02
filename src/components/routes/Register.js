@@ -9,7 +9,9 @@ class Register extends React.Component {
 		firstName: "",
 		lastName: "",
 		email: "",
-		password: ""
+		password: "",
+		status: "",
+		success: false
 	};
 
 	componentWillMount() {
@@ -32,9 +34,7 @@ class Register extends React.Component {
 			firstName: this.state.firstName,
 			lastName: this.state.lastName,
 			email: this.state.email,
-			password: this.state.password,
-			status: "",
-			success: false
+			password: this.state.password
 		};
 
 		axios
