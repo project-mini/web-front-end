@@ -73,6 +73,7 @@ class AddProprietary extends React.Component {
 												value={this.state.name}
 												onChange={this.onChange}
 												autoFocus=""
+												required
 											/>
 										</div>
 									</div>
@@ -85,6 +86,7 @@ class AddProprietary extends React.Component {
 												name="shortDescription"
 												value={this.state.shortDescription}
 												onChange={this.onChange}
+												required
 											/>
 										</div>
 									</div>
@@ -97,6 +99,7 @@ class AddProprietary extends React.Component {
 												name="tags"
 												value={this.state.tags}
 												onChange={this.onChange}
+												required
 											/>
 										</div>
 									</div>

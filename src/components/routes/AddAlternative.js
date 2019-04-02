@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 import "bulma/css/bulma.css";
 
@@ -8,7 +9,8 @@ class AddAlternative extends React.Component {
 		name: "",
 		shortDescription: "",
 		handle: "",
-		license: ""
+		license: "",
+		success: false
 	};
 
 	componentWillMount() {
@@ -27,35 +29,39 @@ class AddAlternative extends React.Component {
 	onSubmit = e => {
 		e.preventDefault();
 
-		console.log(this.state);
-
 		const software = {
 			name: this.state.name,
 			shortDescription: this.state.shortDescription,
-			handle: this.state.tags,
+			handle: this.state.handle,
 			license: this.state.license
 		};
 
 		axios
 			.post(
-				`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/alternative/ `,
+				`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/alternatives/`,
 				software
 			)
 			.then(response => {
-				this.props.history.push("/");
+				this.setState({ success: true });
 			})
 			.catch(error => {
 				console.log(error);
-				if (error.response.status === 400) {
-					window.location.reload();
-				}
 			});
 	};
 
 	render() {
 		const optionDisplay = () => {
-			return <option> Select dropdown </option>;
+			return this.props.software.tags.map(tag => {
+				return (
+					<option key={tag} value={tag}>
+						{tag.toUpperCase()}
+					</option>
+				);
+			});
 		};
+		if (this.state.success) {
+			return <Redirect to="/" push={true} />;
+		}
 		return (
 			<section className="hero is-fullheight">
 				<div className="hero-body">
@@ -77,6 +83,7 @@ class AddAlternative extends React.Component {
 												value={this.state.name}
 												onChange={this.onChange}
 												autoFocus=""
+												required
 											/>
 										</div>
 									</div>
@@ -89,26 +96,8 @@ class AddAlternative extends React.Component {
 												name="shortDescription"
 												value={this.state.shortDescription}
 												onChange={this.onChange}
+												required
 											/>
-										</div>
-									</div>
-									<div className="field">
-										<div className="control">
-											<input
-												className="input is-large"
-												type="text"
-												placeholder="Tags"
-												name="tags"
-												value={this.state.tags}
-											/>
-										</div>
-									</div>
-
-									<div className="field">
-										<div className="control">
-											<div className="select is-large">
-												<select>{optionDisplay()}</select>
-											</div>
 										</div>
 									</div>
 
@@ -121,9 +110,26 @@ class AddAlternative extends React.Component {
 												name="license"
 												value={this.state.license}
 												onChange={this.onChange}
+												required
 											/>
 										</div>
 									</div>
+
+									<div className="field">
+										<div className="control">
+											<div className="select is-large">
+												<select
+													name="handle"
+													value={this.state.handle}
+													onChange={this.onChange}
+													required
+												>
+													{optionDisplay()}
+												</select>
+											</div>
+										</div>
+									</div>
+
 									<button
 										type="submit"
 										className="button is-block is-info is-large is-fullwidth"

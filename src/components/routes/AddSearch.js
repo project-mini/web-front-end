@@ -16,7 +16,7 @@ class AddSearch extends React.Component {
 		this.setState({ search: e.target.value });
 	};
 
-	onClick = software => {
+	onClick = (e, software) => {
 		this.setState({ temp: software, isClicked: true });
 	};
 
@@ -32,7 +32,6 @@ class AddSearch extends React.Component {
 			)
 			.then(response => {
 				this.setState({ software: response.data, isFetched: true });
-				console.log(this.state.software);
 			})
 			.catch(function(error) {
 				console.log(error);
@@ -57,7 +56,10 @@ class AddSearch extends React.Component {
 						<tbody>
 							{this.state.software.map(software => {
 								return (
-									<tr onClick={this.onClick(software)} key={software._id}>
+									<tr
+										onClick={e => this.onClick(e, software)}
+										key={software._id}
+									>
 										<th>{i++}</th>
 										<td>{software.name}</td>
 										<td>{software.shortDescription}</td>

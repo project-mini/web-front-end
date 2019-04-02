@@ -78,6 +78,7 @@ class Register extends React.Component {
 												value={this.state.firstName}
 												onChange={this.onChange}
 												autoFocus=""
+												required
 											/>
 										</div>
 									</div>
@@ -90,6 +91,7 @@ class Register extends React.Component {
 												name="lastName"
 												value={this.state.lastName}
 												onChange={this.onChange}
+												required
 											/>
 										</div>
 									</div>
@@ -102,6 +104,7 @@ class Register extends React.Component {
 												name="email"
 												value={this.state.email}
 												onChange={this.onChange}
+												required
 											/>
 										</div>
 									</div>
@@ -114,6 +117,7 @@ class Register extends React.Component {
 												name="password"
 												value={this.state.password}
 												onChange={this.onChange}
+												required
 											/>
 										</div>
 									</div>

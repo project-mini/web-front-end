@@ -69,6 +69,7 @@ class Login extends React.Component {
 												value={this.state.email}
 												onChange={this.onChange}
 												autoFocus=""
+												required
 											/>
 										</div>
 									</div>
@@ -82,6 +83,7 @@ class Login extends React.Component {
 												name="password"
 												value={this.state.password}
 												onChange={this.onChange}
+												required
 											/>
 										</div>
 									</div>
