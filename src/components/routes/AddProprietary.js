@@ -3,11 +3,11 @@ import axios from "axios";
 
 import "bulma/css/bulma.css";
 
-class Proprietary extends React.Component {
+class AddProprietary extends React.Component {
 	state = {
 		name: "",
 		shortDescription: "",
-		tags: [""]
+		tags: ""
 	};
 
 	componentWillMount() {
@@ -20,9 +20,6 @@ class Proprietary extends React.Component {
 	}
 
 	onChange = e => {
-		if ([e.target.name] === "tags") {
-			this.setState({ [e.target.name]: [...e.target.name, e.target.value] });
-		}
 		this.setState({ [e.target.name]: e.target.value });
 	};
 
@@ -59,9 +56,7 @@ class Proprietary extends React.Component {
 				<div className="hero-body">
 					<div className="container has-text-centered">
 						<div className="column is-8 is-offset-2">
-							<h3 className="title has-text-grey">
-								Proprietary Software Detail
-							</h3>
+							<h3 className="title has-text-grey">Proprietary Software</h3>
 							<p className="subtitle has-text-grey">
 								Enter the Proprietary Software Details of which you want open
 								source alternatives.
@@ -121,4 +116,4 @@ class Proprietary extends React.Component {
 	}
 }
 
-export default Proprietary;
+export default AddProprietary;

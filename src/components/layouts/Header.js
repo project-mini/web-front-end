@@ -41,8 +41,13 @@ class Header extends React.Component {
 								License Check
 							</Link>
 							{localStorage.getItem("jwtToken") && (
-								<Link className="navbar-item" to="/proprietary">
+								<Link className="navbar-item" to="/addproprietary">
 									Add Proprietary
+								</Link>
+							)}
+							{localStorage.getItem("jwtToken") && (
+								<Link className="navbar-item" to="/addsearch">
+									Add Alternative
 								</Link>
 							)}
 							{!localStorage.getItem("jwtToken") && (

@@ -9,7 +9,8 @@ import Top from "./routes/Top";
 import LicenseCheck from "./routes/LicenseCheck";
 import Login from "./routes/Login";
 import Register from "./routes/Register";
-import Proprietary from "./routes/Proprietary";
+import AddProprietary from "./routes/AddProprietary";
+import AddSearch from "./routes/AddSearch";
 
 import "bulma/css/bulma.css";
 
@@ -31,7 +32,8 @@ const App = () => {
 					<Route path="/license" component={LicenseCheck} />
 					<Route path="/login" component={Login} />
 					<Route path="/register" component={Register} />
-					<Route path="/proprietary" component={Proprietary} />
+					<Route path="/addproprietary" component={AddProprietary} />
+					<Route path="/addsearch" component={AddSearch} />
 				</div>
 				<Footer />
 			</div>
