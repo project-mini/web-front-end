@@ -1,3 +1,5 @@
+// Card to show the alternative to the proprietary software with the up vote feature
+
 import React from "react";
 import Axios from "axios";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -14,8 +16,10 @@ class CustomCard extends React.Component {
 		upVotes: this.props.software.upVotes
 	};
 	upVote = () => {
+		// If user have up voted the software then it will appear blue
 		if (this.state.color === "Black") {
 			this.setState({ color: "DodgerBlue", upVotes: this.state.upVotes + 1 });
+			// Sending a put request when user up votes the software
 			Axios.put(
 				`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/alternatives/upvote/${
 					this.props.software._id
@@ -25,7 +29,10 @@ class CustomCard extends React.Component {
 				this.upVotes++;
 			});
 		} else {
+			// If user hasn't up voted the software then it will appear black
 			this.setState({ color: "Black", upVotes: this.state.upVotes - 1 });
+			// Sending a put request when user un up votes the software
+
 			Axios.put(
 				`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/alternatives/unupvote/${
 					this.props.software._id
@@ -60,6 +67,7 @@ class CustomCard extends React.Component {
 							style={{ color: this.state.color }}
 						>
 							{this.state.upVotes}&nbsp;&nbsp;
+							{/* Let the user up vote only if the user is logged in  */}
 							<button
 								onClick={localStorage.getItem("jwtToken") && this.upVote}
 								style={{

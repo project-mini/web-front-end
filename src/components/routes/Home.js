@@ -1,3 +1,5 @@
+// Home Page and the place where we can search the alternatives of a given proprietary software
+
 import React from "react";
 import Fade from "react-reveal/Fade";
 import axios from "axios";
@@ -15,16 +17,19 @@ class Home extends React.Component {
 	};
 
 	onChange = e => {
+		// Two way binding of the form
 		this.setState({ search: e.target.value });
 	};
 
 	onClick = (e, software) => {
+		// What happens when the user clicks on a proprietary software
 		this.setState({ temp: software, isClicked: true });
 	};
 
 	onSubmit = e => {
 		e.preventDefault();
 
+		// Sends a post request to the API and gets back the list of matched proprietary softwares
 		axios
 			.post(
 				`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/proprietary/search/`,
@@ -42,6 +47,7 @@ class Home extends React.Component {
 	};
 	render() {
 		if (this.state.isClicked) {
+			// Go to alternative component if a proprietary software is clicked
 			return <Alternative software={this.state.temp} />;
 		} else if (this.state.isFetched) {
 			let i = 1;
@@ -56,6 +62,7 @@ class Home extends React.Component {
 							</tr>
 						</thead>
 						<tbody>
+							{/* Generated the list of matched proprietary Softwares */}
 							{this.state.software.map(software => {
 								return (
 									<tr
@@ -90,6 +97,7 @@ class Home extends React.Component {
 											<form onSubmit={this.onSubmit}>
 												<div className="field has-addons">
 													<div className="control">
+														{/* Form to get the name of the proprietary software to be searched */}
 														<input
 															className="input is-medium"
 															type="text"
@@ -110,6 +118,7 @@ class Home extends React.Component {
 											</form>
 										</Fade>
 									</div>
+									{/* Animating the components */}
 									<Fade right cascade>
 										<div className="column is-half">
 											<figure className="image is-medium">

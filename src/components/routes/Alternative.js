@@ -1,3 +1,5 @@
+// Shows the list of all the alternatives of a given proprietary software
+
 import React from "react";
 import axios from "axios";
 
@@ -11,6 +13,7 @@ class Alternative extends React.Component {
 	};
 
 	componentDidMount() {
+		// Get the list of all alternatives of a proprietary software from the api
 		axios
 			.get(
 				`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/alternatives/${
@@ -56,6 +59,7 @@ class Alternative extends React.Component {
 						{this.state.soft.map(value => {
 							return (
 								<div className="column is-one-third">
+									{/* Rendering all the possible alternative cards by passing each card detail to CustomCard Component */}
 									<CustomCard key={value._id} software={value} />
 								</div>
 							);

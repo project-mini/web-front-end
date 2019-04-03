@@ -1,3 +1,5 @@
+// This Component is for the footer of the website
+
 import React from "react";
 
 const Footer = () => {

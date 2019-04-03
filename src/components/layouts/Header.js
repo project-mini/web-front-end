@@ -1,3 +1,5 @@
+// This component dynamically renders the header based on if user is logged in or not
+
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -8,11 +10,12 @@ class Header extends React.Component {
 	componentDidMount() {
 		axios.defaults.headers.common["Authorization"] = localStorage.getItem(
 			"jwtToken"
-		);
+		); //For setting the authorization token to store the jwt token store in local storage
 	}
 
 	logout = () => {
 		localStorage.removeItem("jwtToken");
+		// This removes the token from the local storage making the session invalid and logging us out
 		window.location.reload();
 	};
 
@@ -37,6 +40,7 @@ class Header extends React.Component {
 							<Link className="navbar-item" to="/license">
 								License Check
 							</Link>
+							{/* Dynamically generated nav bar items */}
 							{localStorage.getItem("jwtToken") && (
 								<Link className="navbar-item" to="/addproprietary">
 									Add Proprietary
