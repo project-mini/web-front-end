@@ -2,17 +2,24 @@ import React from "react";
 import Fade from "react-reveal/Fade";
 import axios from "axios";
 
+import Alternative from "./Alternative";
 import un from "../../static/images/un.png";
 
 class Home extends React.Component {
 	state = {
 		software: [],
 		search: "",
+		temp: "",
+		isClicked: false,
 		isFetched: false
 	};
 
 	onChange = e => {
 		this.setState({ search: e.target.value });
+	};
+
+	onClick = (e, software) => {
+		this.setState({ temp: software, isClicked: true });
 	};
 
 	onSubmit = e => {
@@ -34,7 +41,9 @@ class Home extends React.Component {
 			});
 	};
 	render() {
-		if (this.state.isFetched) {
+		if (this.state.isClicked) {
+			return <Alternative software={this.state.temp} />;
+		} else if (this.state.isFetched) {
 			let i = 1;
 			return (
 				<div style={{ marginTop: "10px" }}>
@@ -49,7 +58,10 @@ class Home extends React.Component {
 						<tbody>
 							{this.state.software.map(software => {
 								return (
-									<tr key={software._id}>
+									<tr
+										onClick={e => this.onClick(e, software)}
+										key={software.name}
+									>
 										<th>{i++}</th>
 										<td>{software.name}</td>
 										<td>{software.shortDescription}</td>

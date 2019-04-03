@@ -31,9 +31,6 @@ class Header extends React.Component {
 					</div>
 					<div className="navbar-menu">
 						<div className="navbar-end">
-							<Link className="navbar-item" to="/alternative">
-								Alternatives
-							</Link>
 							<Link className="navbar-item" to="/top">
 								Top Alternatives
 							</Link>

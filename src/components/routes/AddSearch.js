@@ -40,8 +40,7 @@ class AddSearch extends React.Component {
 	render() {
 		if (this.state.isClicked) {
 			return <AddAlternative software={this.state.temp} />;
-		}
-		if (this.state.isFetched) {
+		} else if (this.state.isFetched) {
 			let i = 1;
 			return (
 				<div style={{ marginTop: "10px" }}>
@@ -58,7 +57,7 @@ class AddSearch extends React.Component {
 								return (
 									<tr
 										onClick={e => this.onClick(e, software)}
-										key={software._id}
+										key={software.name}
 									>
 										<th>{i++}</th>
 										<td>{software.name}</td>

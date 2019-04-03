@@ -1,22 +1,39 @@
 import React from "react";
+import Axios from "axios";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faIgloo } from "@fortawesome/free-solid-svg-icons";
+
 import "bulma/css/bulma.css";
-import Axios from "axios";
 
 library.add(faIgloo, faHeart);
 
 class CustomCard extends React.Component {
+	state = {
+		color: "Black",
+		upVotes: this.props.software.upVotes
+	};
 	upVote = () => {
-		Axios.put(
-			`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/alternatives/upvote/${
-				this.props.software._id
-			}`
-		).then(res => {
-			window.location.reload();
-			console.log("Up Vote");
-		});
+		if (this.state.color === "Black") {
+			this.setState({ color: "DodgerBlue", upVotes: this.state.upVotes + 1 });
+			Axios.put(
+				`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/alternatives/upvote/${
+					this.props.software._id
+				}`
+			).then(res => {
+				console.log("Up Vote");
+				this.upVotes++;
+			});
+		} else {
+			this.setState({ color: "Black", upVotes: this.state.upVotes - 1 });
+			Axios.put(
+				`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/alternatives/unupvote/${
+					this.props.software._id
+				}`
+			).then(res => {
+				console.log("Down Vote");
+			});
+		}
 	};
 	render() {
 		return (
@@ -36,13 +53,15 @@ class CustomCard extends React.Component {
 							<p className="subtitle is-6">{this.props.software.license}</p>
 						</div>
 					</div>
-
-					<div className="content">{this.props.software.name}</div>
+					<div className="content">{this.props.software.shortDescription}</div>
 					<footer className="card-footer">
-						<div className="card-footer-item" style={{ color: "red" }}>
-							{this.props.software.upVotes}&nbsp;&nbsp;
+						<div
+							className="card-footer-item"
+							style={{ color: this.state.color }}
+						>
+							{this.state.upVotes}&nbsp;&nbsp;
 							<button
-								onClick={this.upVote}
+								onClick={localStorage.getItem("jwtToken") && this.upVote}
 								style={{
 									backgroundColor: "Transparent",
 									backgroundRepeat: "no-repeat",
@@ -52,7 +71,11 @@ class CustomCard extends React.Component {
 									outline: "none"
 								}}
 							>
-								<FontAwesomeIcon color="red" icon="heart" size="lg" />
+								<FontAwesomeIcon
+									color={this.state.color}
+									icon="heart"
+									size="lg"
+								/>
 							</button>
 						</div>
 					</footer>

@@ -6,7 +6,6 @@ import CustomCard from "../layouts/CustomCard";
 import "bulma/css/bulma.css";
 
 class Alternative extends React.Component {
-	
 	state = {
 		soft: []
 	};
@@ -14,7 +13,9 @@ class Alternative extends React.Component {
 	componentDidMount() {
 		axios
 			.get(
-				`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/alternatives/`
+				`${"https://cors-anywhere.herokuapp.com/"}https://dry-dusk-50998.herokuapp.com/api/alternatives/${
+					this.props.software._id
+				}`
 			)
 			.then(res => {
 				this.setState({ soft: res.data });
@@ -42,8 +43,10 @@ class Alternative extends React.Component {
 						<div className="column is-four-fifth">
 							<section className="section">
 								<div className="container">
-									<h1 className="title">Windows Media Player</h1>
-									<h2 className="subtitle">Default media player of windows.</h2>
+									<h1 className="title">{this.props.software.name}</h1>
+									<h2 className="subtitle">
+										{this.props.software.shortDescription}
+									</h2>
 								</div>
 							</section>
 						</div>
