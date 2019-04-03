@@ -124,6 +124,9 @@ class AddAlternative extends React.Component {
 													onChange={this.onChange}
 													required
 												>
+													<option value="" disabled selected>
+														Select a Tag
+													</option>
 													{optionDisplay()}
 												</select>
 											</div>
